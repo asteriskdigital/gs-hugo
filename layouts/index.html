@@ -1,0 +1,32 @@
+{{ define "main" }}
+
+  {{ range first 4 site.RegularPages }}
+  
+  <article class="cf ph3 ph5-ns pv5">
+      <header class="fn fl-ns w-50-ns pr4-ns">
+          <h1 class="f2 lh-title fw9 mb3 mt0 pt3 bt bw2">
+            <a href="{{.Permalink}}" class="near-black no-underline link dim">
+              {{ .Title }}
+          </a>
+          </h1>
+        <h2 class="f3 mid-gray lh-title">
+          {{ with .Params.authors }}{{ if eq "string" (printf "%#T" . ) }}{{.}}{{else}} {{ delimit . ", "}}{{ end }}{{ end }}
+        </h2>
+        <time class="f6 ttu tracked gray">{{ .Date | dateFormat "January 2, 2006"}}</time>
+      </header>
+      <div class="fn fl-ns w-50-ns">
+        <p class="f5 lh-copy measure mt0-ns">
+          {{ .Summary }}
+        </p>
+        <a href="{{.Permalink}}" title="Continue Reading" class="f6 dib ph2 link mid-gray ba b--silver ph3 pv2 dim">Continue Reading</a>
+
+      </div>
+  </article>
+
+  {{ end }}
+  {{ range .Sections }}
+    <div class="tc-l mv5 ph3 items-center">
+      <a class="f6 link ba ph3 pv2 dib near-black measure-wide w-100 tc center" href="{{.Permalink}}">{{.Title}}</a>
+    </div>
+  {{ end }}
+ {{ end }}

@@ -1,0 +1,42 @@
+{{ define "main" }}
+<main class="sans-serif">
+<ul class="list mh5 pl0 cf mw8 ba bb-0 b--light-silver">
+    {{ range (.Paginate .RegularPagesRecursive).Pages }}
+    <li class="pa3 pa4-ns bb b--light-silver">
+        <span class="b db f3 mb1">
+            <a href="{{.Permalink}}" class="near-black no-underline link dim">{{.Title}}</a>
+        </span>
+        <span class="db f4 mv2 mid-gray">
+            {{ with .Params.authors }}{{ if eq "string" (printf "%#T" . ) }}{{.}}{{else}} {{ delimit . ", "}}{{ end }}{{ end }}
+        </span>
+        <span class="db f6 mv2 mid-gray">
+            <time class="f6 ttu tracked gray">{{ .Date | dateFormat "January 2, 2006"}}</time>
+        </span>
+    </li>
+    {{ end }}
+</ul>
+
+{{ $pag := .Paginator }}
+{{ if gt $pag.TotalPages 0 }}
+<div class="mw8 center">
+    <nav class="cf pa3 pa4-ns" data-name="pagination-numbers">
+    {{ if $pag.HasPrev }}
+        <a class="fl dib link dim black f6 f5-ns b pa2" href="{{$pag.Prev.URL}}" title="Previous">&larr; Previous</a>
+    {{ else }}
+        <span class="fl dib link mid-gray f6 f5-ns b pa2" title="Previous">&larr; Previous</span>
+    {{ end }}
+    {{ if $pag.HasNext }}
+        <a class="fr dib link dim black f6 f5-ns b pa2" href="{{$pag.Next.URL}}" title="Next">Next &rarr;</a>
+    {{ else }}
+        <span class="fr dib link mid-gray f6 f5-ns b pa2" title="Next">Next &rarr;</span>
+    {{ end }}
+    <div class="overflow-hidden center db tc">
+        {{- range $pag.Pagers -}}
+        <a class="dib link dim f6 f5-ns b pa2 {{ if eq . $pag }}white bg-dark-green br2 {{ else }} black{{ end }}" href="{{.URL}}" title="1">{{.PageNumber}}</a>
+        {{ end }}
+    </div>
+    </nav>
+</div>
+{{ end }}
+
+ {{ end }}
