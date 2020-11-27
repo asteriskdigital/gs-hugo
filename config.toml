@@ -8,3 +8,24 @@ title = "My New Hugo Site"
   [[module.imports.mounts]]
     source="."
     target="content/sherlock"
+
+[[module.mounts]]
+  source = "static"
+  target = "static"
+
+
+[[module.mounts]]
+  source = "assets"
+  target = "assets"
+
+
+[[module.mounts]]
+  source = "content"
+  target = "content"
+
+[[module.mounts]]
+  source = "layouts"
+  target = "layouts"
+
+[taxonomies]
+  author = "authors"
