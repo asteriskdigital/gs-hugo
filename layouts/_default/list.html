@@ -1,7 +1,7 @@
 {{ define "main" }}
 <main class="sans-serif">
 <ul class="list mh5 pl0 cf mw8 ba bb-0 b--light-silver">
-    {{ range (.Paginate .RegularPagesRecursive).Pages }}
+    {{ range (.Paginate .Pages).Pages }}
     <li class="pa3 pa4-ns bb b--light-silver">
         <span class="b db f3 mb1">
             <a href="{{.Permalink}}" class="near-black no-underline link dim">{{.Title}}</a>
